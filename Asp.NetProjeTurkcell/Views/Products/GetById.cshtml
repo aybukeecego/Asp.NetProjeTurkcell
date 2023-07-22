@@ -1,0 +1,23 @@
+﻿@model ProductViewModel
+
+
+<a type="button" class="btn btn-info" asp-controller="Products" asp-action="Index">Ürünler Sayfasına Geri Dön</a>
+
+<div class="card">
+    <div class="card-header">
+       Ürün İsmi : (@Model.Name)
+    </div>
+    <div class="card-body">
+
+        <p class="card-text">
+            <div>Ürün Fiyatı : @Model.Price</div>
+            <div>Ürün Stoğu : @Model.Stock</div>
+            <div>Ürün Rengi : @Model.Color</div>
+            <div>Ürün Süresi : @Model.Expire</div>
+            <div>Ürün Açıklaması : @Model.Description</div>
+
+
+        </p>
+        
+    </div>
+</div>

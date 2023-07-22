@@ -1,0 +1,82 @@
+﻿
+@model ProductViewModel
+
+<h1> Ürün Ekleme</h1>
+<div asp-validation-summary="ModelOnly"></div>
+<form asp-controller="Products" asp-action="Add"method="post" enctype="multipart/form-data" >
+	<div class="mb-3">
+		<label asp-for="Name" class="form-label">Ürün İsmi :</label>
+		<input clas="form-control" asp-for="Name"/>
+		<br />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="Stock" class="form-label">Ürün Stok :</label>
+		<input clas="form-control" asp-for="Stock" />
+	</div>
+	<div class="mb-3">
+		<label asp-for="Price" class="form-label">Ürün Fiyat :</label>
+		<input clas="form-control" asp-for="Price" />
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" asp-for="IsPublish"/>
+		<label class="form-check-label" asp-for="IsPublish">
+			Yayınlansın mı? :
+		</label>
+
+	</div>
+	<br />
+	<span>Ürün kaç ay yayınlansın? :</span>
+	@foreach(var item in ViewBag.Expire as Dictionary<string, int>)
+	{
+		<div class="form-check">
+		<input class="form-check-input" type="radio" id ="@(item.Value)Expire" asp-for="Expire" value="@item.Value">
+		<label class="form-check-label" asp-for="Expire" for="@(item.Value)Expire">@item.Key
+		</label>
+		</div>
+	}
+	<br />
+	<div class="form-floating">
+		<textarea asp-for="Description" class="form-control" placeholder="Ürün açıklama" style="height:100px"></textarea>
+		<label asp-for="Description">Ürün açıklama</label>
+		<br />
+		<span class="text-danger" asp-validation-for="Description"></span>
+	</div>
+	<br />
+	<div clas="mb-3">
+		<select class="form-select" asp-for="Color" asp-items="@ViewBag.ColorSelect">
+			<option value="" >Renk</option>
+		</select>
+		<br />
+		<div class="mb-3">
+			<label asp-for="PublishDate" class="form-label">Ürün Yayınlanma tarihi:</label>
+			<input asp-for="PublishDate" class="form-control"/>
+		</div>
+		
+	</div>
+	<div class="mb-3">
+		<select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.CategorySelect">
+			<option value="">Kategori</option>
+		</select>
+	</div>
+
+	
+	<div class="mb-3">
+		<label for="formFileSm" class="form-label">Resim Ekle</label>
+		<input class="form-control form-control-sm" asp-for="Image" type="file">
+	</div>
+
+	
+	
+
+	<button class="btn btn-primary"type="submit">Ürün Kaydet</button>
+
+</form>
+
+@section Scripts
+
+{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

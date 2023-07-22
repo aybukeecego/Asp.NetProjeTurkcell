@@ -1,0 +1,68 @@
+﻿
+@model List<ProductViewModel>
+
+<h2>Page Size : @ViewBag.pageSize</h2>
+<h2>Page : @ViewBag.page</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>İsim</th>
+			<th>Stok</th>
+			<th>Fiyat</th>
+			<th>Yayınlansın mı</th>
+			<th>Kaç ay yayınlansın</th>
+			<th>Açıklama</th>
+			<th>İşlem</th>
+			<th></th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td>@item.Name</td>
+				<td>@item.Stock</td>
+				<td>@item.Price</td>
+				<td>
+					@if (@item.IsPublish)
+					{
+						<text>Evet</text>
+					}
+					else
+					{
+						<text>Hayır</text>
+					}
+				</td>
+				<td>@item.Expire</td>
+				<td>
+					@if (item.Description.Length > 20)
+					{
+						@item.Description.Substring(0,20)
+
+						<text>...</text>
+					}
+					else
+					{
+						@item.Description
+					}
+				</td>
+
+				<td>
+					<a class=" btn btn-warning" asp-controller="Products" asp-action="Remove" asp-route-id="@item.Id">Sil</a>
+					<a class="btn btn-info" asp-controller="Products" asp-action="Update" asp-route-id="@item.Id">Güncelle</a>
+					<a class="btn btn-outline-primary" asp-controller="Products" asp-action="GetById" asp-route-productid="@item.Id">Ürünün Sayfasına Git</a>
+
+
+				</td>
+
+			</tr>
+
+		}
+	</tbody>
+
+
+
+</table>

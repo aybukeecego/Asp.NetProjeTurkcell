@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Privacy";
+}
+@*<div class="row">
+    
+    <div class="col-md-4">
+        @await Component.InvokeAsync( "ProductList",new{type=2})
+    </div>
+</div> (Çalışmadı)*@
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <vc:product-list type="2"></vc:product-list>
+    </div>
+   <div class="col-md-4">
+        <img src="/images/cat.jpg" />
+        <image-thumbnail image-src="/images/cat.jpg"></image-thumbnail>
+   </div>
+</div>
